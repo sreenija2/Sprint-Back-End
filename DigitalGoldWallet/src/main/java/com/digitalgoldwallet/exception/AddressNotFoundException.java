@@ -8,14 +8,3 @@ public class AddressNotFoundException extends Exception{
 
 }
 
-//hi srinija this is devi this is our 1st commit
-//this is nikitha this is my 1st commint
-//hi  fellows ippudu em avthadho chudham
-//ha chudham chudham
-//Nakem karma ra babu idi
-<<<<<<< HEAD
-//apasham kirikiri
-
-=======
-//em ledhu
->>>>>>> branch 'master' of https://github.com/sreenija2/Sprint-Back-End.git
