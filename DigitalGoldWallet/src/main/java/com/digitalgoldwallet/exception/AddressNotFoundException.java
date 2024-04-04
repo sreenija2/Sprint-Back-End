@@ -13,9 +13,4 @@ public class AddressNotFoundException extends Exception{
 //hi  fellows ippudu em avthadho chudham
 //ha chudham chudham
 //Nakem karma ra babu idi
-<<<<<<< HEAD
-//apasham kirikiri
-
-=======
 //em ledhu
->>>>>>> branch 'master' of https://github.com/sreenija2/Sprint-Back-End.git
