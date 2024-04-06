@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class GlobalExceptions {
+public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(UserNotFoundException.class)
 	public ResponseEntity<ExceptionResponse> handleUserNotFoundException(UserNotFoundException e){
@@ -51,6 +51,33 @@ public class GlobalExceptions {
 	
 	@ExceptionHandler(DuplicateAddressIDException.class)
 	public ResponseEntity<ExceptionResponse> handleDuplicateAddressIDException(DuplicateAddressIDException e){
+		ExceptionResponse response = new ExceptionResponse();
+		response.setMessage("Validation failed");
+		response.setTimestamp(LocalDateTime.now());
+		ResponseEntity<ExceptionResponse> responseEntity = new ResponseEntity<ExceptionResponse>(response, HttpStatus.CONFLICT);
+		return responseEntity;
+	}
+	
+	@ExceptionHandler(InvalidPhysicalGoldTransactionIDException.class)
+	public ResponseEntity<ExceptionResponse> handleInvalidPhysicalGoldTransactionIDException(InvalidPhysicalGoldTransactionIDException e){
+		ExceptionResponse response = new ExceptionResponse();
+		response.setMessage("Validation failed");
+		response.setTimestamp(LocalDateTime.now());
+		ResponseEntity<ExceptionResponse> responseEntity = new ResponseEntity<ExceptionResponse>(response, HttpStatus.CONFLICT);
+		return responseEntity;
+	}
+	
+	@ExceptionHandler(PhysicalGoldTransactionNotFoundException.class)
+	public ResponseEntity<ExceptionResponse> handlePhysicalGoldTransactionNotFoundException(PhysicalGoldTransactionNotFoundException e){
+		ExceptionResponse response = new ExceptionResponse();
+		response.setMessage("Validation failed");
+		response.setTimestamp(LocalDateTime.now());
+		ResponseEntity<ExceptionResponse> responseEntity = new ResponseEntity<ExceptionResponse>(response, HttpStatus.CONFLICT);
+		return responseEntity;
+	}
+	
+	@ExceptionHandler(InvalidBranchIDException.class)
+	public ResponseEntity<ExceptionResponse> handleInvalidBranchIDException(InvalidBranchIDException e){
 		ExceptionResponse response = new ExceptionResponse();
 		response.setMessage("Validation failed");
 		response.setTimestamp(LocalDateTime.now());

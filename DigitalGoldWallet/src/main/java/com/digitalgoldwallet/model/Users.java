@@ -11,14 +11,22 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="USERS")
 public class Users {
+	
+	
+//	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_gen")
+//  @SequenceGenerator(name="article_gen", sequenceName="article_seq")
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="USER_ID")
@@ -31,28 +39,31 @@ public class Users {
 	@Column(name="NAME")
 	@NotBlank(message = "name cannot be blank")
 	private String name;
+	
 	@ManyToOne
 	@JoinColumn(name="ADDRESS_ID")
 	private Addresses address;
+	
 	@Column(name="BALANCE")
 	private double balance;
 	@Column(name="CREATED_AT")
 	private LocalDateTime createdAt;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL)
 	List<PhysicalGoldTransactions> physicalgoldtransactions;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user1", cascade=CascadeType.ALL)
 	List<VirtualGoldHoldings> virtualgoldholdings;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user2", cascade=CascadeType.ALL)
 	List<TransactionHistory> transactionhistory;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="user3", cascade=CascadeType.ALL)
 	List<Payments> payments;
-	
-	
-	
 	
 	public Users() {
 		super();
@@ -79,6 +90,38 @@ public class Users {
 		return userId;
 	}
 	
+	public List<PhysicalGoldTransactions> getPhysicalgoldtransactions() {
+		return physicalgoldtransactions;
+	}
+
+	public void setPhysicalgoldtransactions(List<PhysicalGoldTransactions> physicalgoldtransactions) {
+		this.physicalgoldtransactions = physicalgoldtransactions;
+	}
+
+	public List<VirtualGoldHoldings> getVirtualgoldholdings() {
+		return virtualgoldholdings;
+	}
+
+	public void setVirtualgoldholdings(List<VirtualGoldHoldings> virtualgoldholdings) {
+		this.virtualgoldholdings = virtualgoldholdings;
+	}
+
+	public List<TransactionHistory> getTransactionhistory() {
+		return transactionhistory;
+	}
+
+	public void setTransactionhistory(List<TransactionHistory> transactionhistory) {
+		this.transactionhistory = transactionhistory;
+	}
+
+	public List<Payments> getPayments() {
+		return payments;
+	}
+
+	public void setPayments(List<Payments> payments) {
+		this.payments = payments;
+	}
+
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}

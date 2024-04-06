@@ -9,13 +9,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ADDRESSES")
 public class Addresses {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	//@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_gen")
+    @SequenceGenerator(name="article_gen", sequenceName="article_seq")
 	@Column(name="ADDRESS_ID")
 	private int addressId;
 	@Column(name="STREET")

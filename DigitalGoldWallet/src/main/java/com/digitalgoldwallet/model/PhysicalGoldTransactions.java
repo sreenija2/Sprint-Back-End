@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name="physical_gold_transactions")
@@ -18,26 +19,33 @@ public class PhysicalGoldTransactions {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="transaction_id")
-	private int transactionid;
+	private int transactionId;
+	
 	@ManyToOne
 	@JoinColumn(name="user_id")
 	private Users user;
+	
 	@ManyToOne
 	@JoinColumn(name="branch_id")
 	private VendorBranches branch;
+	
+	//@NotNull(message="Quantity cannot be null")
 	@Column(name="quantity")
 	private double quantity;
+	
+	//@NotNull(message="Address cannot be null")
 	@ManyToOne
 	@JoinColumn(name="delivery_address_id")
 	private Addresses address2;
+	
 	@Column(name="created_At")
 	private LocalDateTime createdAt;
 	
-	public int getTransactionid() {
-		return transactionid;
+	public int getTransactionId() {
+		return transactionId;
 	}
-	public void setTransactionid(int transactionid) {
-		this.transactionid = transactionid;
+	public void setTransactionId(int transactionId) {
+		this.transactionId = transactionId;
 	}
 	public Users getUser() {
 		return user;
@@ -71,7 +79,7 @@ public class PhysicalGoldTransactions {
 	}
 	@Override
 	public String toString() {
-		return "PhysicalGoldTransactions [transactionid=" + transactionid + ", user=" + user + ", branch=" + branch
+		return "PhysicalGoldTransactions [transactionid=" + transactionId + ", user=" + user + ", branch=" + branch
 				+ ", quantity=" + quantity + ", address=" + address2 + ", createdAt=" + createdAt + "]";
 	}
 	
